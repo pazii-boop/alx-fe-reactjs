@@ -12,8 +12,7 @@ const MainContent = () => {
       }}
     >
       <p style={{ fontSize: "18px", color: "#333", lineHeight: "1.6" }}>
-        Explore the most beautiful cities around the world! Discover their
-        unique cultures, architecture, and attractions.
+        I love to visit New York, Paris, and Tokyo.
       </p>
     </main>
   );
