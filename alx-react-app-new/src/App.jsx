@@ -5,7 +5,7 @@ import Counter from "./components/Counter";
 function App() {
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>Counter Application</h1>
+      <h1 style={{ textAlign: "justify" }}>Counter Application</h1>
       <Counter />
     </div>
   );
