@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import useRecipeStore from "./recipeStore";
 
 const RecipeList = () => {
@@ -16,7 +17,14 @@ const RecipeList = () => {
               padding: "10px",
             }}
           >
-            <h3>{recipe.title}</h3>
+            <h3>
+              <Link
+                to={`/recipes/${recipe.id}`}
+                style={{ textDecoration: "none", color: "blue" }}
+              >
+                {recipe.title}
+              </Link>
+            </h3>
             <p>{recipe.description}</p>
           </div>
         ))
