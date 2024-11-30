@@ -1,12 +1,10 @@
-import React from "react";
-import FormikForm from "./components/FormikForm";
+import RegistrationForm from "./components/RegistrationForm";
 
 function App() {
   return (
-    <div>
-      <h1>User Registration Form</h1>
-      <FormikForm />
-    </div>
+    <>
+      <RegistrationForm />
+    </>
   );
 }
 
