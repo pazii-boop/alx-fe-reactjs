@@ -4,10 +4,10 @@ function UserProfile() {
       <img
         src="https://via.placeholder.com/150"
         alt="User"
-        className="w-36 h-36 rounded-full mx-auto"
+        className="sm:w-24 sm:h-24 md:w-36 md:h-36 rounded-full mx-auto"
       />
       <h1 className="text-lg md:text-xl text-blue-800 my-4 text-center">
-        John Doe
+        Omondi Ongaloh
       </h1>
       <p className="text-sm text-gray-600 text-center">
         Developer at Example Co. Loves to write code and explore new
