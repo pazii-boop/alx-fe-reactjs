@@ -1,7 +1,24 @@
 import React, { useState } from "react";
 
+// Validation function for the form
+const validate = (title, ingredients, steps) => {
+  const errors = {};
+  if (!title.trim()) {
+    errors.title = "Title is required.";
+  }
+  if (!ingredients.trim()) {
+    errors.ingredients = "Ingredients are required.";
+  } else if (ingredients.split(",").length < 2) {
+    errors.ingredients = "Please enter at least two ingredients.";
+  }
+  if (!steps.trim()) {
+    errors.steps = "Preparation steps are required.";
+  }
+  return errors;
+};
+
 const AddRecipeForm = () => {
-  // State for input fields and form validation
+  // State for form fields and validation
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [steps, setSteps] = useState("");
@@ -11,19 +28,8 @@ const AddRecipeForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validation logic
-    const newErrors = {};
-    if (!title.trim()) {
-      newErrors.title = "Title is required.";
-    }
-    if (!ingredients.trim()) {
-      newErrors.ingredients = "Ingredients are required.";
-    } else if (ingredients.split(",").length < 2) {
-      newErrors.ingredients = "Please enter at least two ingredients.";
-    }
-    if (!steps.trim()) {
-      newErrors.steps = "Preparation steps are required.";
-    }
+    // Validate form fields
+    const newErrors = validate(title, ingredients, steps);
 
     if (Object.keys(newErrors).length === 0) {
       // If no errors, handle form submission logic (e.g., send data to an API or update state)
