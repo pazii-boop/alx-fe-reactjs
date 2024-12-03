@@ -3,18 +3,65 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "./images/spageti.jpeg"
+    "image": "./images/spaghetti.jpg",
+    "ingredients": [
+      "200g spaghetti",
+      "100g pancetta",
+      "2 large eggs",
+      "50g parmesan cheese",
+      "Black pepper"
+    ],
+    "instructions": [
+      "Cook spaghetti according to package instructions.",
+      "Fry pancetta until crisp.",
+      "Whisk eggs and parmesan together in a bowl.",
+      "Combine spaghetti, pancetta, and egg mixture. Mix quickly.",
+      "Serve immediately with extra parmesan and pepper."
+    ]
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
-    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato-based gravy.",
-    "image": "https://via.placeholder.com/150"
+    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
+    "image": "./images/tikka.jpg",
+    "ingredients": [
+      "500g chicken breast",
+      "2 tbsp yogurt",
+      "1 tbsp garam masala",
+      "1 cup tomato puree",
+      "1/2 cup cream"
+    ],
+    "instructions": [
+      "Marinate chicken with yogurt and spices for 1 hour.",
+      "Grill chicken until fully cooked.",
+      "Cook tomato puree with spices for 10 minutes.",
+      "Add grilled chicken and cream to the sauce.",
+      "Simmer for 5 minutes and serve with naan or rice."
+    ]
   },
   {
     "id": 3,
     "title": "Vegan Buddha Bowl",
-    "summary": "A wholesome bowl of fresh vegetables, grains, and a tangy tahini dressing.",
-    "image": "https://via.placeholder.com/150"
+    "summary": "A healthy and colorful bowl of plant-based goodness with grains, veggies, and a creamy tahini dressing.",
+    "image": "./images/buddha-bowl.jpg",
+    "ingredients": [
+      "1 cup quinoa",
+      "1 cup chickpeas (cooked or canned)",
+      "1 cup sweet potato (cubed)",
+      "1 cup kale (chopped)",
+      "1/2 avocado (sliced)",
+      "2 tbsp tahini",
+      "1 tbsp lemon juice",
+      "1 tbsp olive oil",
+      "Salt and pepper to taste"
+    ],
+    "instructions": [
+      "Cook quinoa according to package instructions and set aside.",
+      "Roast cubed sweet potato with olive oil, salt, and pepper at 200°C (400°F) for 20-25 minutes.",
+      "Massage chopped kale with a drizzle of olive oil and a pinch of salt until softened.",
+      "Assemble the bowl by layering quinoa, roasted sweet potato, chickpeas, kale, and avocado slices.",
+      "Mix tahini, lemon juice, and a bit of water to create a creamy dressing.",
+      "Drizzle the dressing over the bowl and serve."
+    ]
   }
 ]
