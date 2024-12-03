@@ -25,7 +25,7 @@ const HomePage = () => {
             <img
               src={recipe.image}
               alt={recipe.title}
-              className="w-full h-40 object-cover rounded-t-lg"
+              className="w-full h-45 object-cover rounded-t-lg"
             />
             <div className="p-4">
               <h2 className="text-2xl font-semibold text-gray-800 mb-2">
