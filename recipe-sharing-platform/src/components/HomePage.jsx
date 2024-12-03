@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom"; // Import Link for navigation
-import "./HomePage.css";
 
 const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
