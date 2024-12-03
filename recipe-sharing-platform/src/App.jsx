@@ -1,7 +1,12 @@
-export default function App() {
+import React from "react";
+import HomePage from "./components/HomePage";
+
+const App = () => {
   return (
-    <div className="text-blue-500 text-center mt-10">
-      <h1>Welcome to Recipe Sharing Platform</h1>
+    <div>
+      <HomePage />
     </div>
   );
-}
+};
+
+export default App;
