@@ -1,16 +1,17 @@
 import React from "react";
+import Search from "./components/Search";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <header>
         <h1>GitHub User Search</h1>
       </header>
       <main>
-        <p>Search for GitHub users here...</p>
+        <Search />
       </main>
     </div>
   );
-}
+};
 
 export default App;
