@@ -1,22 +1,25 @@
 import React, { useState } from "react";
-import { fetchUserData } from "../services/githubService";
+import {
+  fetchUserData,
+  fetchAdvancedSearchResults,
+} from "../services/githubService";
 
 const Search = () => {
-  const [username, setUsername] = useState("");
-  const [userData, setUserData] = useState(null);
+  const [query, setQuery] = useState(""); // Holds the search query for advanced searches
+  const [users, setUsers] = useState([]); // Array to hold multiple user results
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  // Handle form submission
+  // Handle form submission for advanced search
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(false);
-    setUserData(null);
+    setUsers([]); // Clear previous results
 
     try {
-      const data = await fetchUserData(username); // Fetch user data using fetchUserData
-      setUserData(data);
+      const data = await fetchAdvancedSearchResults(query); // Fetch multiple users
+      setUsers(data.items || []); // Populate users array
     } catch (err) {
       setError(true);
     } finally {
@@ -29,9 +32,9 @@ const Search = () => {
       <form onSubmit={handleFormSubmit} className="space-y-4">
         <input
           type="text"
-          placeholder="Enter GitHub username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Enter search query (e.g., location:Nairobi repos:>10)"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
           className="block w-full px-4 py-2 border rounded-md"
         />
         <button
@@ -44,27 +47,35 @@ const Search = () => {
 
       {/* Conditional Rendering */}
       {loading && <p>Loading...</p>}
-      {error && <p>Looks like we cant find the user.</p>}
-      {userData && (
-        <div className="p-4 border rounded-md shadow-sm mt-4">
-          <img
-            src={userData.avatar_url}
-            alt={userData.login}
-            className="w-20 h-20 rounded-full mx-auto"
-          />
-          <h2 className="text-center text-lg">
-            {userData.name || userData.login}
-          </h2>
-          <p className="text-center">
-            <a
-              href={userData.html_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500"
+      {error && <p>Something went wrong. Please try again.</p>}
+      {!loading && !error && users.length === 0 && <p>No users found.</p>}
+
+      {/* Render User Cards */}
+      {users.length > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+          {users.map((user) => (
+            <div
+              key={user.id}
+              className="p-4 border rounded-md shadow-sm flex flex-col items-center"
             >
-              View Profile
-            </a>
-          </p>
+              <img
+                src={user.avatar_url}
+                alt={user.login}
+                className="w-20 h-20 rounded-full"
+              />
+              <h2 className="text-center text-lg mt-2">{user.login}</h2>
+              <p className="text-center">
+                <a
+                  href={user.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500"
+                >
+                  View Profile
+                </a>
+              </p>
+            </div>
+          ))}
         </div>
       )}
     </div>
