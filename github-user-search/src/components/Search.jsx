@@ -1,28 +1,22 @@
 import React, { useState } from "react";
-import { fetchAdvancedSearchResults } from "../services/githubService";
+import { fetchUserData } from "../services/githubService";
 
 const Search = () => {
   const [username, setUsername] = useState("");
-  const [location, setLocation] = useState("");
-  const [minRepos, setMinRepos] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  // Handle form submission
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(false);
-    setSearchResults([]);
-
-    const query = [];
-    if (username) query.push(`user:${username}`);
-    if (location) query.push(`location:${location}`);
-    if (minRepos) query.push(`repos:>=${minRepos}`);
+    setUserData(null);
 
     try {
-      const results = await fetchAdvancedSearchResults(query.join("+"));
-      setSearchResults(results.items);
+      const data = await fetchUserData(username); // Fetch user data using fetchUserData
+      setUserData(data);
     } catch (err) {
       setError(true);
     } finally {
@@ -35,23 +29,9 @@ const Search = () => {
       <form onSubmit={handleFormSubmit} className="space-y-4">
         <input
           type="text"
-          placeholder="Username"
+          placeholder="Enter GitHub username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="block w-full px-4 py-2 border rounded-md"
-        />
-        <input
-          type="text"
-          placeholder="Location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          className="block w-full px-4 py-2 border rounded-md"
-        />
-        <input
-          type="number"
-          placeholder="Minimum Repositories"
-          value={minRepos}
-          onChange={(e) => setMinRepos(e.target.value)}
           className="block w-full px-4 py-2 border rounded-md"
         />
         <button
@@ -64,29 +44,29 @@ const Search = () => {
 
       {/* Conditional Rendering */}
       {loading && <p>Loading...</p>}
-      {error && <p>Looks like we cant find the user.</p>}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-        {searchResults.map((user) => (
-          <div key={user.id} className="p-4 border rounded-md shadow-sm">
-            <img
-              src={user.avatar_url}
-              alt={user.login}
-              className="w-20 h-20 rounded-full mx-auto"
-            />
-            <h2 className="text-center text-lg">{user.login}</h2>
-            <p className="text-center">
-              <a
-                href={user.html_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500"
-              >
-                View Profile
-              </a>
-            </p>
-          </div>
-        ))}
-      </div>
+      {error && <p>Looks like we can't find the user.</p>}
+      {userData && (
+        <div className="p-4 border rounded-md shadow-sm mt-4">
+          <img
+            src={userData.avatar_url}
+            alt={userData.login}
+            className="w-20 h-20 rounded-full mx-auto"
+          />
+          <h2 className="text-center text-lg">
+            {userData.name || userData.login}
+          </h2>
+          <p className="text-center">
+            <a
+              href={userData.html_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500"
+            >
+              View Profile
+            </a>
+          </p>
+        </div>
+      )}
     </div>
   );
 };
